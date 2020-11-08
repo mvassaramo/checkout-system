@@ -26,13 +26,17 @@ class Promotion
   private
 
   def self.basket_qualify_for_discount?(total)
-    basket_promos = all.select { |promo| promo.type == 'basket' }
+    basket_promos = filter_promotions('basket')
     basket_promos.find { |promo| promo.threshold <= total }&.discount_percentage
   end
 
   def self.item_qualify_for_discount?(item_code, quantity)
-    item_promos = all.select { |promo| promo.type == 'item' }
+    item_promos = filter_promotions('item')
     item_promos.find { |promo| promo.item_code == item_code && promo.min_quantity <= quantity}&.discount_percentage
+  end
+
+  def self.filter_promotions(type)
+    all.select { |promo| promo.type == type }
   end
 
   def self.all
