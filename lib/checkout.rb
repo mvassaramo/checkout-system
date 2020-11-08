@@ -25,8 +25,8 @@ class Checkout
     return 0 if @basket.empty?
 
     item_discounted_total = @basket.reduce(0) do |sum, item|
-      discount = 0 #todo: Check if qualifies for item discount
-
+      discount = Promotion.apply_item_discount(item[:code], item[:quantity])
+      
       item_cost_with_discount = (1 - discount) * item[:price] * item[:quantity]
       
       sum + item_cost_with_discount

@@ -1,6 +1,6 @@
 class Promotion
 
-  attr_reader :type, :discount_percentage, :threshold
+  attr_reader :type, :discount_percentage, :threshold, :item_code, :min_quantity
 
   @@all = []
 
@@ -18,11 +18,21 @@ class Promotion
     discount ? discount : 0
   end
 
+  def self.apply_item_discount(item_code, quantity)
+    discount = item_qualify_for_discount?(item_code, quantity) 
+    discount ? discount : 0
+  end
+
   private
 
   def self.basket_qualify_for_discount?(total)
     basket_promos = all.select { |promo| promo.type == 'basket' }
     basket_promos.find { |promo| promo.threshold <= total }&.discount_percentage
+  end
+
+  def self.item_qualify_for_discount?(item_code, quantity)
+    item_promos = all.select { |promo| promo.type == 'item' }
+    item_promos.find { |promo| promo.item_code == item_code && promo.min_quantity <= quantity}&.discount_percentage
   end
 
   def self.all
