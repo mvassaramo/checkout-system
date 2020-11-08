@@ -1,5 +1,4 @@
 class Promotion
-
   attr_reader :type, :discount_percentage, :threshold, :item_code, :min_quantity
 
   @@all = []

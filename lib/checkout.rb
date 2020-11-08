@@ -2,7 +2,6 @@ require_relative 'item'
 require_relative 'promotion'
 
 class Checkout
-  
   attr_reader :basket
 
   def initialize(promotional_rules)
