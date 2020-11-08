@@ -13,7 +13,6 @@ class Checkout
   def scan(item)
     # check if valid
 
-    # check if basket has item
     item_found = basket_has_item(item)
 
     if item_found
@@ -31,7 +30,6 @@ class Checkout
   end
 
   def basket_has_item(item)
-    false
-    # TODO: implement
+    @basket.find { |i| i[:code] ==item.code }
   end
 end

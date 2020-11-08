@@ -22,6 +22,9 @@ RSpec.describe Checkout do
     end
 
     it 'increases the quantity by 1 if item is already in basket' do
+      checkout.scan(item2)
+      checkout.scan(item2)
+      expect(checkout.basket).to include({:code=>2, :price=>45.0, :quantity=>2})
     end
   end
 
