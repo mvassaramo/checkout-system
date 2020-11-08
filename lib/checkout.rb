@@ -11,7 +11,8 @@ class Checkout
   end
 
   def scan(item)
-    # check if valid
+    return "error: #{item} is not valid" unless valid_item?(item)
+
     item_found = basket_has_item(item)
 
     if item_found
@@ -47,5 +48,9 @@ class Checkout
 
   def basket_has_item(item)
     @basket.find { |i| i[:code] ==item.code }
+  end
+
+  def valid_item?(item)
+    Item.all.include?(item)
   end
 end

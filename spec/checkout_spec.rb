@@ -15,7 +15,14 @@ RSpec.describe Checkout do
   let(:item2) { Item.new(code: 002, name: 'Little Table', price: 45.00) }
   let(:item3) { Item.new(code: 003, name: 'Funky Light', price: 19.95) }
 
+  let(:invalid_item) { double('Item', code: 999, name: 'apple', price: 1.00) }
+
   describe '#scan' do
+    it 'returns an error message if the item does not exist in our shop' do
+      expect(checkout.scan(invalid_item)).to eq("error: #{invalid_item} is not valid")
+      expect(checkout.basket).to be_empty
+    end
+
     it 'successfully adds the item to the basket if it is valid' do
       checkout.scan(item1)
       expect((checkout.basket).count).to eq 1
