@@ -34,6 +34,10 @@ RSpec.describe Checkout do
     end
 
     it 'applies basket discount if above £60' do
+      checkout.scan(item1)
+      checkout.scan(item2)
+      checkout.scan(item3)
+      expect(checkout.total).to eq 66.78
     end
 
     it 'applies discount for items with promotion' do
