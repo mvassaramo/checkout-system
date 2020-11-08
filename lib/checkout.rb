@@ -26,7 +26,7 @@ class Checkout
 
     item_discounted_total = @basket.reduce(0) do |sum, item|
       discount = Promotion.apply_item_discount(item[:code], item[:quantity])
-      
+
       item_cost_with_discount = (1 - discount) * item[:price] * item[:quantity]
       
       sum + item_cost_with_discount
@@ -34,7 +34,7 @@ class Checkout
 
     basket_discount = Promotion.apply_basket_discount(item_discounted_total)
 
-    total = (item_discounted_total * (1 - basket_discount))
+    total = (item_discounted_total * (1 - basket_discount)).round(2)
   end
 
   private 
