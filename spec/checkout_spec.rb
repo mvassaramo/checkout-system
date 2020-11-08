@@ -1,4 +1,8 @@
+require_relative '../lib/checkout'
+
 RSpec.describe Checkout do
+
+  subject(:checkout) { Checkout.new(promotional_rules) }
 
   describe '#scan' do
 
@@ -7,7 +11,7 @@ RSpec.describe Checkout do
   describe '#total' do
     it 'is 0 if the basket is empty' do
     end
-    
+
     it 'applies basket discount if above £60' do
     end
 
