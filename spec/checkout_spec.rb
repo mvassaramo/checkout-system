@@ -30,6 +30,7 @@ RSpec.describe Checkout do
 
   describe '#total' do
     it 'is 0 if the basket is empty' do
+      expect(checkout.total).to eq 0
     end
 
     it 'applies basket discount if above £60' do
