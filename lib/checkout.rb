@@ -35,6 +35,7 @@ class Checkout
     basket_discount = Promotion.apply_basket_discount(item_discounted_total)
 
     total = (item_discounted_total * (1 - basket_discount)).round(2)
+    formatted_total = '£%.2f' % total
   end
 
   private 
