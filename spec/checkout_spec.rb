@@ -5,7 +5,11 @@ RSpec.describe Checkout do
   subject(:checkout) { Checkout.new(promotional_rules) }
 
   describe '#scan' do
+    it 'successfully adds the item to the basket if it is valid' do
+    end
 
+    it 'increases the quantity by 1 if item is already in basket' do
+    end
   end
 
   describe '#total' do
