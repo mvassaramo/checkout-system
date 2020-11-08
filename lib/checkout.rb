@@ -12,7 +12,6 @@ class Checkout
 
   def scan(item)
     # check if valid
-
     item_found = basket_has_item(item)
 
     if item_found
@@ -20,6 +19,10 @@ class Checkout
     else
       @basket << { code: item.code, price: item.price, quantity: 1 }
     end
+  end
+
+  def total
+    return 0 if @basket.empty?
   end
 
   private 
